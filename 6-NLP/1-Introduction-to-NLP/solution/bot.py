@@ -1,4 +1,4 @@
-import random
+import secrets
 
 # This list contains the random responses (you can add your own or translate them into your own language too)
 random_responses = ["That is quite interesting, please tell me more.",
@@ -20,7 +20,7 @@ while True:
         # if they typed in 'bye' (or even BYE, ByE, byE etc.), break out of the loop
         break
     else:
-        response = random.choices(random_responses)[0]
+        response = secrets.SystemRandom().choices(random_responses)[0]
     print(response)
 
 print("It was nice talking to you, goodbye!")
