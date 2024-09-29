@@ -1,10 +1,10 @@
 import numpy as np
 from flask import Flask, request, render_template
-import pickle
+import fickling
 
 app = Flask(__name__)
 
-model = pickle.load(open("../ufo-model.pkl", "rb"))
+model = fickling.load(open("../ufo-model.pkl", "rb"))
 
 
 @app.route("/")
