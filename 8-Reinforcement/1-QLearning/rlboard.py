@@ -5,8 +5,8 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import cv2
-import random
 import math
+import secrets
 
 def clip(min,max,x):
     if x<min:
@@ -66,32 +66,32 @@ class Board:
 
     def randomize(self,water_size=5, num_water=3, num_wolves=1, num_trees=5, num_apples=3,seed=None):
         if seed:
-            random.seed(seed)
+            secrets.SystemRandom().seed(seed)
         for _ in range(num_water):
-            x = random.randint(0,self.width-1)
-            y = random.randint(0,self.height-1)
+            x = secrets.SystemRandom().randint(0,self.width-1)
+            y = secrets.SystemRandom().randint(0,self.height-1)
             for _ in range(water_size):
                 self.matrix[x,y] = Board.Cell.water
-                x = clip(0,self.width-1,x+random.randint(-1,1))
-                y = clip(0,self.height-1,y+random.randint(-1,1))
+                x = clip(0,self.width-1,x+secrets.SystemRandom().randint(-1,1))
+                y = clip(0,self.height-1,y+secrets.SystemRandom().randint(-1,1))
         for _ in range(num_trees):
             while True:
-                x = random.randint(0,self.width-1)
-                y = random.randint(0,self.height-1)
+                x = secrets.SystemRandom().randint(0,self.width-1)
+                y = secrets.SystemRandom().randint(0,self.height-1)
                 if self.matrix[x,y]==Board.Cell.empty:
                     self.matrix[x,y] = Board.Cell.tree # tree
                     break
         for _ in range(num_wolves):
             while True:
-                x = random.randint(0,self.width-1)
-                y = random.randint(0,self.height-1)
+                x = secrets.SystemRandom().randint(0,self.width-1)
+                y = secrets.SystemRandom().randint(0,self.height-1)
                 if self.matrix[x,y]==Board.Cell.empty:
                     self.matrix[x,y] = Board.Cell.wolf # wolf
                     break
         for _ in range(num_apples):
             while True:
-                x = random.randint(0,self.width-1)
-                y = random.randint(0,self.height-1)
+                x = secrets.SystemRandom().randint(0,self.width-1)
+                y = secrets.SystemRandom().randint(0,self.height-1)
                 if self.matrix[x,y]==Board.Cell.empty:
                     self.matrix[x,y] = Board.Cell.apple
                     break
@@ -114,8 +114,8 @@ class Board:
             self.human = new_pos
 
     def random_pos(self):
-        x = random.randint(0,self.width-1)
-        y = random.randint(0,self.height-1)
+        x = secrets.SystemRandom().randint(0,self.width-1)
+        y = secrets.SystemRandom().randint(0,self.height-1)
         return (x,y)
 
     def random_start(self):
